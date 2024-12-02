@@ -154,7 +154,6 @@
                 <h2 class="text-center font-oswald text-[64px] font-normal text-white">{{ __('messages.why_choose_us') }}</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Карточка 1 -->
                 <div class="bg-[#08256780] text-white rounded-xl shadow-lg p-6 relative"
                     style="box-shadow: 10px 10px 0px #301122;">
                     <div class="w-28 h-28 mb-4 bg-white rounded-full flex items-center justify-center">
@@ -168,7 +167,6 @@
                     </p>
                 </div>
 
-                <!-- Карточка 2 -->
                 <div class="bg-[#D9D9D936] text-white rounded-xl shadow-lg p-6 relative"
                     style="box-shadow: 10px 10px 4px #301122;">
                     <div class="w-28 h-28 mb-4 bg-white rounded-full flex items-center justify-center">
@@ -182,7 +180,6 @@
                     </p>
                 </div>
 
-                <!-- Карточка 3 -->
                 <div class="bg-[#08256780] text-white rounded-xl shadow-lg p-6 relative"
                     style="box-shadow: 10px 10px 4px #301122;">
                     <div class="w-28 h-28 mb-4 bg-white rounded-full flex items-center justify-center">
@@ -196,7 +193,6 @@
                     </p>
                 </div>
 
-                <!-- Карточка 4 -->
                 <div class="bg-[#D9D9D936] text-white rounded-xl shadow-lg p-6 relative"
                     style="box-shadow: 10px 10px 4px #301122;">
                     <div class="w-28 h-28 mb-4 bg-white rounded-full flex items-center justify-center">

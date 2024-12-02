@@ -97,12 +97,12 @@
                     </div>
                 @else
                     <!-- Login/Register Links for Guests -->
-                    <x-button href="{{ route('login') }}" :active="request()->routeIs('login')" class="mr-2">
+                    <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')" class="flex items-center justify-center py-1 px-2 bg-[#2E69A9] rounded-full text-white text-lg hover:bg-blue-600 mr-2">
                         @lang('messages.login')
-                    </x-button>
-                    <x-button href="{{ route('register') }}" :active="request()->routeIs('register')">
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')" class="flex items-center justify-center py-1 px-2 bg-[#2E69A9] rounded-full text-white text-lg hover:bg-blue-600">
                         @lang('messages.register')
-                    </x-button>
+                    </x-nav-link>
                 @endauth
                 <!-- Social Media Icons -->
                 <div class="hidden lg:flex space-x-4 ml-4">

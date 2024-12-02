@@ -169,7 +169,7 @@ return [
     'our_services' => 'Наши Услуги',
     'computer_rental' => 'Аренда компьютеров',
     'room_rental' => 'Аренда помещений',
-    'boot_camp' => 'Учебный лагерь',
+    'boot_camp' => 'Боевой лагерь',
     'buy_plan' => 'Купить план',
     'special_offers' => 'Специальные предложения',
     'day_passes' => 'Дневные абонементы',

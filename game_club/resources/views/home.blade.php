@@ -9,7 +9,7 @@
                     class="w-full h-full object-cover object-center"
                 />
             </div>
-            <div class="relative z-10 max-w-7xl mx-auto sm:px-6 lg:px-8 text-white flex flex-col justify-center items-center gap-4 px-8 py-20">
+            <div class="relative z-10 max-w-7xl mx-auto lg:px-8 text-white flex flex-col justify-center items-center gap-4 px-0 py-20">
 
                 <h2 class="text-[32px] md:text-[64px] sm:text-[48px] font-oswald font-normal text-white text-center leading-tight mb-6">
                     {{ __('messages.join_royal_arena') }}
@@ -19,16 +19,16 @@
                     {{ __('messages.productive_workspace_title') }}
                 </h3>
 
-                <div class="flex flex-col sm:flex-row w-full justify-around gap-4 mb-8">
-                    <a href="{{ route('services') }}" class="flex justify-center items-center py-2 px-6 bg-[#2E69A9] rounded-full text-white sm:text-xs md:text-lg hover:bg-blue-600 w-full sm:w-[215px] text-center">
+                <div class="flex flex-row md:w-full md:justify-around gap-4 mb-8">
+                    <a href="{{ route('services') }}" class="flex justify-center items-center py-2 px-6 bg-[#2E69A9] rounded-full text-white text-xs md:text-lg hover:bg-blue-600 w-full md:w-[245px] text-center">
                         {{ __('messages.reserve_a_computer') }}
                     </a>
                     
-                    <a href="#download" class="flex justify-center items-center py-2 px-6 border-2 border-[#A4C5FF] rounded-full text-white sm:text-xs md:text-lg hover:border-[#4287FF] hover:text-white w-full sm:w-[215px] text-center">
+                    <a href="#download" class="flex justify-center items-center py-2 px-6 border-2 border-[#A4C5FF] rounded-full text-white text-xs md:text-lg hover:border-[#4287FF] hover:text-white w-full md:w-[245px] text-center">
                         {{ __('messages.download_app') }}
                     </a>
 
-                    <a href="#prices" class="flex justify-center items-center py-2 px-6 bg-[#2E69A9] rounded-full text-white sm:text-xs md:text-lg hover:bg-blue-600 w-full sm:w-[215px] text-center">
+                    <a href="#prices" class="flex justify-center items-center py-2 px-6 bg-[#2E69A9] rounded-full text-white text-xs md:text-lg hover:bg-blue-600 w-full md:w-[245px] text-center">
                         {{ __('messages.price') }}
                     </a>
                 </div>

@@ -169,7 +169,7 @@ return [
     'our_services' => 'Mūsu Pakalpojumi',
     'computer_rental' => 'Datora īre',
     'room_rental' => 'Telpu īre',
-    'boot_camp' => 'Apmācību nometne',
+    'boot_camp' => 'Kaujas nometne',
     'buy_plan' => 'Iegādāties plānu',
     'download_app' => 'Lejupielādējiet mūsu lietotni!',
     'app_description' => 'Mūsu ērta lietotne palīdzēs jums',

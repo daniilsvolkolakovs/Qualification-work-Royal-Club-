@@ -23,7 +23,7 @@
         @livewireStyles
         @stack('styles')
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased" style="background-image: url('{{ asset('image/background.png') }}'); background-size: 100%; background-position: top;">
         <x-banner />
 
         <div>

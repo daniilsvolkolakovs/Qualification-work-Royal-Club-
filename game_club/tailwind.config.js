@@ -18,9 +18,9 @@ export default {
                 oswald: ['Oswald', 'sans-serif'],
                 lato: ['Lato', 'sans-serif'],
             },
-            colors: {
-                'custom-bg': '#100F11',
-            },
+            backgroundImage: {
+                'bg-custom-banner': "url('/image/background.png')",
+            }
         },
     },
 

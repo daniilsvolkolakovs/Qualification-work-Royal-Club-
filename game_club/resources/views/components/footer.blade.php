@@ -58,6 +58,6 @@
     
 </footer>
 <!-- Footer Bottom -->
-<div class="bg-[#100F11] text-white text-center py-4 mt-10 mb-4">
+<div class=" text-white text-center py-4 mt-10 mb-4">
     <p>&copy; Royal Arena</p>
 </div>

@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+[x-cloak] {
+    display: none !important;
+}
+
+body {
+    @apply bg-custom-bg;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.swiper-wrapper-container {
+    position: relative;
+
+}
+
+.swiper-container {
+    width: 85%;
+    height: 100%;
+    padding: 50px 0;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.swiper-slide {
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+    height: 400px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    z-index: 10;
+}
+
+
+.swiper-button-next {
+    right: -80px;
+}
+
+.swiper-button-prev {
+    left: -80px;
+}

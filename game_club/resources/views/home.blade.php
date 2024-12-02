@@ -379,52 +379,52 @@
         <!-- Our Services -->        
         <div class="max-w-7xl mb-20 mx-auto sm:px-6 lg:px-8 mt-20">
             <div class="text-white overflow-hidden p-8">
-                <h2 class="text-center font-oswald text-[64px] font-normal text-white mb-2 decoration-0">
+                <h2 class="text-center font-oswald text-[40px] md:text-[64px] font-normal text-white mb-2 decoration-0">
                     {{ __('messages.our_services') }}
                 </h2>
-                <h3 class="text-center font-oswald text-[40px] text-white mb-24">
+                <h3 class="text-center font-oswald text-[22px] md:text-[40px] text-white mb-12 md:mb-24">
                     {{ __('messages.computer_rental') }}
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
 
-                    <div class="bg-[#DCE9FF] text-blue-900 rounded-xl p-6 flex flex-col items-center shadow-lg">
-                        <h3 class="font-oswald text-[48px] font-normal mb-4 self-start">{{ __('messages.room_rental') }}</h3>
-                        <ul class="text-lg list-disc list-inside text-left mb-4">
+                    <div class="bg-[#DCE9FF] text-blue-900 rounded-3xl p-6 flex flex-col items-center shadow-lg max-w-[320px] md:max-w-full">
+                        <h3 class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 self-start">{{ __('messages.room_rental') }}</h3>
+                        <ul class="text-xs md:text-lg list-disc list-inside text-left mb-4">
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                         </ul>
-                        <p class="font-oswald text-[48px] font-normal mb-4 text-right">35€/hour</p>
-                        <button class="bg-[#082567] text-[#DCE9FF] px-20 md:px-10 lg:px-20 py-2 font-oswald text-[24px] font-extrabold hover:bg-blue-800 rounded-full">
+                        <p class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 text-right">35€/hour</p>
+                        <button class="bg-[#082567] text-[#DCE9FF] px-20 md:px-10 lg:px-20 py-2 font-oswald text-[16px] md:text-[24px] font-extrabold hover:bg-blue-800 rounded-full">
                             <a href="{{ route('services') }}">{{ __('messages.buy_plan') }}</a>
                         </button>
                     </div>
 
-                    <div class="bg-[linear-gradient(204.47deg,_rgba(246,_32,_135,_0.6)_2.56%,_#082567_44.37%)] text-white rounded-xl p-6 flex flex-col items-center shadow-lg">
-                        <h3 class="font-oswald text-[48px] font-normal mb-4 self-start">{{ __('messages.computer_rental') }}</h3>
-                        <ul class="text-lg list-disc list-inside text-left mb-4">
+                    <div class="bg-[linear-gradient(204.47deg,_rgba(246,_32,_135,_0.6)_2.56%,_#082567_44.37%)] text-white rounded-3xl p-6 flex flex-col items-center shadow-lg max-w-[320px] md:max-w-full">
+                        <h3 class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 self-start">{{ __('messages.computer_rental') }}</h3>
+                        <ul class="text-xs md:text-lg list-disc list-inside text-left mb-4">
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                         </ul>
-                        <p class="font-oswald text-[48px] font-normal mb-4 text-right">35€/hour</p>
-                        <button class="bg-[#DCE9FF] text-blue-900 px-20 md:px-10 lg:px-20 py-2 font-oswald text-[24px] font-extrabold hover:bg-white rounded-full">
+                        <p class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 text-right">35€/hour</p>
+                        <button class="bg-[#DCE9FF] text-blue-900 px-20 md:px-10 lg:px-20 py-2 font-oswald text-[16px] md:text-[24px] font-extrabold hover:bg-white rounded-full">
                             <a href="{{ route('services') }}">{{ __('messages.buy_plan') }}</a>
                         </button>
                     </div>
 
-                    <div class="bg-[#DCE9FF] text-blue-900 rounded-xl p-6 flex flex-col items-center shadow-lg">
-                        <h3 class="font-oswald text-[48px] font-normal mb-4 self-start">{{ __('messages.boot_camp') }}</h3>
-                        <ul class="text-lg  list-disc list-inside text-left mb-4">
+                    <div class="bg-[#DCE9FF] text-blue-900 rounded-3xl p-6 flex flex-col items-center shadow-lg max-w-[320px] md:max-w-full">
+                        <h3 class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 self-start">{{ __('messages.boot_camp') }}</h3>
+                        <ul class="text-xs md:text-lg list-disc list-inside text-left mb-4">
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                         </ul>
-                        <p class="font-oswald text-[48px] font-normal mb-4 text-right">35€/hour</p>
-                        <button class="bg-[#082567] text-[#DCE9FF] px-20 md:px-10 lg:px-20 py-2 font-oswald text-[24px] font-extrabold hover:bg-blue-800 rounded-full">
+                        <p class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 text-right">35€/hour</p>
+                        <button class="bg-[#082567] text-[#DCE9FF] px-20 md:px-10 lg:px-20 py-2 font-oswald text-[16px] md:text-[24px] font-extrabold hover:bg-blue-800 rounded-full">
                             <a href="{{ route('services') }}">{{ __('messages.buy_plan') }}</a>
                         </button>
                     </div>
@@ -434,49 +434,49 @@
         <!-- Special Offers -->
         <div class="max-w-7xl mb-20 mx-auto sm:px-6 lg:px-8">
             <div class="text-white overflow-hidden p-8">
-                <h3 class="text-center font-oswald text-[44px] text-white mb-24">
+                <h3 class="text-center font-oswald text-[22px] md:text-[40px] text-white mb-12 md:mb-24">
                     {{ __('messages.special_offers') }}
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                    <div class="bg-[linear-gradient(204.47deg,_rgba(246,_32,_135,_0.6)_2.56%,_#082567_44.37%)] text-white rounded-xl p-6 flex flex-col items-center shadow-lg">
-                        <h3 class="font-oswald text-[48px] font-normal mb-4 self-start">{{ __('messages.day_passes') }}</h3>
-                        <ul class="text-lg list-disc list-inside text-left mb-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
+ 
+                    <div class="bg-[linear-gradient(204.47deg,_rgba(246,_32,_135,_0.6)_2.56%,_#082567_44.37%)] text-white rounded-3xl p-6 flex flex-col items-center shadow-lg max-w-[320px] md:max-w-full">
+                        <h3 class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 self-start">{{ __('messages.day_passes') }}</h3>
+                        <ul class="text-xs md:text-lg list-disc list-inside text-left mb-4">
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                         </ul>
-                        <p class="font-oswald text-[48px] font-normal mb-4 text-right">35€/hour</p>
-                        <button class="bg-[#DCE9FF] text-blue-900 px-20 md:px-10 lg:px-20 py-2 font-oswald text-[24px] font-extrabold hover:bg-white rounded-full">
+                        <p class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 text-right">35€/hour</p>
+                        <button class="bg-[#DCE9FF] text-blue-900 px-20 md:px-10 lg:px-20 py-2 font-oswald text-[16px] md:text-[24px] font-extrabold hover:bg-white rounded-full">
                             <a href="{{ route('services') }}">{{ __('messages.buy_plan') }}</a>
                         </button>
                     </div>
 
-                    <div class="bg-[#DCE9FF] text-blue-900 rounded-xl p-6 flex flex-col items-center shadow-lg">
-                        <h3 class="font-oswald text-[48px] font-normal mb-4 self-start">{{ __('messages.night_passes') }}</h3>
-                        <ul class="text-lg list-disc list-inside text-left mb-4">
+                    <div class="bg-[#DCE9FF] text-blue-900 rounded-3xl p-6 flex flex-col items-center shadow-lg max-w-[320px] md:max-w-full ">
+                        <h3 class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 self-start">{{ __('messages.night_passes') }}</h3>
+                        <ul class="text-xs md:text-lg list-disc list-inside text-left mb-4">
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                         </ul>
-                        <p class="font-oswald text-[48px] font-normal mb-4 text-right">35€/hour</p>
-                        <button class="bg-[#082567] text-[#DCE9FF] px-20 md:px-10 lg:px-20 py-2 font-oswald text-[24px] font-extrabold hover:bg-blue-800 rounded-full">
+                        <p class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 text-right">35€/hour</p>
+                        <button class="bg-[#082567] text-[#DCE9FF] px-20 md:px-10 lg:px-20 py-2 font-oswald text-[16px] md:text-[24px] font-extrabold hover:bg-blue-800 rounded-full">
                             <a href="{{ route('services') }}">{{ __('messages.buy_plan') }}</a>
                         </button>
                     </div>
 
-                    <div class="bg-[linear-gradient(204.47deg,_rgba(246,_32,_135,_0.6)_2.56%,_#082567_44.37%)] text-white rounded-xl p-6 flex flex-col items-center shadow-lg">
-                        <h3 class="font-oswald text-[48px] font-normal mb-4 self-start">{{ __('messages.monthly_passes') }}</h3>
-                        <ul class="text-lg list-disc list-inside text-left mb-4">
+                    <div class="bg-[linear-gradient(204.47deg,_rgba(246,_32,_135,_0.6)_2.56%,_#082567_44.37%)] text-white rounded-3xl p-6 flex flex-col items-center shadow-lg max-w-[320px] md:max-w-full">
+                        <h3 class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 self-start">{{ __('messages.monthly_passes') }}</h3>
+                        <ul class="text-xs md:text-lg list-disc list-inside text-left mb-4">
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                             <li>Lorem Ipsum is simply dummy text</li>
                         </ul>
-                        <p class="font-oswald text-[48px] font-normal mb-4 text-right">35€/hour</p>
-                        <button class="bg-[#DCE9FF] text-blue-900 px-20 md:px-10 lg:px-20 py-2 font-oswald text-[24px] font-extrabold hover:bg-white rounded-full">
+                        <p class="font-oswald text-[36px] md:text-[48px] font-normal mb-4 text-right">35€/hour</p>
+                        <button class="bg-[#DCE9FF] text-blue-900 px-20 md:px-10 lg:px-20 py-2 font-oswald text-[16px] md:text-[24px] font-extrabold hover:bg-white rounded-full">
                                 <a href="{{ route('services') }}">{{ __('messages.buy_plan') }}</a>
                         </button>
                     </div>
@@ -487,39 +487,39 @@
         <div class="max-w-7xl mb-20 mx-auto sm:px-6 lg:px-8" id="prices">
             <div class="text-white overflow-hidden sm:rounded-lg p-10">
 
-                <h2 class="text-center font-oswald text-[44px] font-normal text-white mb-10">
+                <h2 class="text-center font-oswald text-[40px] md:text-[44px] font-normal text-white mb-10">
                     {{ __('messages.price') }}
                 </h2>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-6">
 
                     <div class="bg-[#D9D9D9] rounded-3xl p-6 text-center">
                         <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                        <p class="text-4xl font-oswald text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
+                        <p class="text-4xl font-oswald text-[44px] md:text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
                         <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
                     </div>
 
                     <div class="bg-[#D9D9D9] rounded-3xl p-6 text-center">
                         <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                        <p class="text-4xl font-oswald text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
+                        <p class="text-4xl font-oswald text-[44px] md:text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
                         <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
                     </div>
                     
                     <div class="bg-[#D9D9D9] rounded-3xl p-6 text-center">
                         <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                        <p class="text-4xl font-oswald text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
+                        <p class="text-4xl font-oswald text-[44px] md:text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
                         <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
                     </div>
 
                     <div class="bg-[#D9D9D9] rounded-3xl p-6 text-center">
                         <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                        <p class="text-4xl font-oswald text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
+                        <p class="text-4xl font-oswald text-[44px] md:text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
                         <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
                     </div>
 
                     <div class="bg-[#D9D9D9] rounded-3xl p-6 text-center">
                         <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                        <p class="text-4xl font-oswald text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
+                        <p class="text-4xl font-oswald text-[44px] md:text-[64px] text-[#625E5E] mt-6 mb-8">150$</p>
                         <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
                     </div>
                 </div>
@@ -538,12 +538,12 @@
             <div class="relative z-10 flex flex-col lg:flex-row justify-between items-center lg:items-start max-w-7xl mx-auto px-6 lg:px-8 h-full p-0">
                 <div class="flex flex-col justify-start lg:w-2/3 text-white h-full">
                     <div class="flex items-start gap-4 mt-2 lg:mt-4">
-                        <div class="bg-white w-[7px] h-[140px] mt-4"></div>
+                        <div class="bg-white w-[7px] h-[80px] md:h-[140px] mt-4"></div>
                         <div>
-                            <h3 class="text-[36px] md:text-[48px] lg:text-[52px] font-oswald font-normal text-[#4287ff] leading-tight mb-1">
+                            <h3 class="text-[26px] md:text-[48px] lg:text-[52px] font-oswald font-normal text-[#4287ff] leading-tight mb-1">
                                 {{ __('messages.download_app') }}
                             </h3>
-                            <h3 class="text-[36px] md:text-[48px] lg:text-[52px] font-oswald font-normal text-white max-w-[560px] leading-tight">
+                            <h3 class="text-[26px] md:text-[48px] lg:text-[52px] font-oswald font-normal text-white max-w-[560px] leading-tight">
                                 {{ __('messages.app_description') }}
                             </h3>
                         </div>
@@ -554,7 +554,7 @@
                     <img 
                         src="{{ asset('image/app dwld.png') }}" 
                         alt="Download App Links" 
-                        class="w-[200px] sm:w-[150px] md:w-[200px] lg:w-[250px] self-end"
+                        class="w-[100px] md:w-[200px] lg:w-[250px] self-end"
                     />
                 </div>
             </div>
@@ -562,15 +562,15 @@
         <!-- Contact us -->
         <div class="max-w-7xl mb-20 mx-auto sm:px-6 lg:px-8">
             <div class="text-white overflow-hidden p-4 sm:p-10">
-                <h2 class="text-center font-oswald text-[44px] font-normal text-white mb-10">
+                <h2 class="text-center font-oswald text-[40px] md:text-[44px] font-normal text-white mb-10">
                     {{ __('messages.contacts_us') }}
                 </h2>
-                <p class="text-center text-gray-400 mb-12 sm:mb-24">
+                <p class="text-center text-[12px] md:text-[24px] text-gray-400 mb-12 sm:mb-24">
                     {{ __('messages.contacts_description') }}
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start">
-                    <div class="w-full">
+                    <div class="w-full order-2 md:order-1">
                         <div class="h-[300px] sm:h-[450px] lg:h-[500px] w-full md:w-[100%] mx-auto">
                             <div id="map" style="height: 100%; width: 100%;" class="mb-8 md:mb-0"></div>
                             @push('styles')
@@ -600,7 +600,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full text-[#A4C5FF] py-8">
+                    <div class="w-full order-1 md:order-2 text-[#A4C5FF] py-8 p-12 md:p-0">
                         <div>
                             <h3 class="text-[32px] sm:text-[44px] font-bold text-[#A4C5FF] mb-6">
                                 {{ __('messages.contact_details') }}

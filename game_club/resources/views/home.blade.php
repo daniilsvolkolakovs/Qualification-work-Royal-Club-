@@ -9,26 +9,26 @@
                     class="w-full h-full object-cover object-center"
                 />
             </div>
-            <div class="relative z-10 max-w-7xl mx-auto sm:px-6 lg:px-8 text-white flex flex-col justify-center items-center gap-8 px-8 py-20">
+            <div class="relative z-10 max-w-7xl mx-auto sm:px-6 lg:px-8 text-white flex flex-col justify-center items-center gap-4 px-8 py-20">
 
-                <h2 class="text-[64px] sm:text-[48px] font-oswald font-normal text-white text-center leading-tight mb-6">
+                <h2 class="text-[32px] md:text-[64px] sm:text-[48px] font-oswald font-normal text-white text-center leading-tight mb-6">
                     {{ __('messages.join_royal_arena') }}
                 </h2>
 
-                <h3 class="text-[40px] sm:text-[32px] font-oswald font-normal text-white text-center mb-10">
+                <h3 class="text-[20px] md:text-[40px] sm:text-[20px] font-oswald font-normal text-white text-center sm:mb-2 md:mb-10">
                     {{ __('messages.productive_workspace_title') }}
                 </h3>
 
                 <div class="flex flex-col sm:flex-row w-full justify-around gap-4 mb-8">
-                    <a href="{{ route('services') }}" class="flex justify-center items-center py-2 px-6 bg-[#2E69A9] rounded-full text-white text-lg hover:bg-blue-600 w-full sm:w-[215px] text-center">
+                    <a href="{{ route('services') }}" class="flex justify-center items-center py-2 px-6 bg-[#2E69A9] rounded-full text-white sm:text-xs md:text-lg hover:bg-blue-600 w-full sm:w-[215px] text-center">
                         {{ __('messages.reserve_a_computer') }}
                     </a>
                     
-                    <a href="#download" class="flex justify-center items-center py-2 px-6 border-2 border-[#A4C5FF] rounded-full text-white text-lg hover:border-[#4287FF] hover:text-white w-full sm:w-[215px] text-center">
+                    <a href="#download" class="flex justify-center items-center py-2 px-6 border-2 border-[#A4C5FF] rounded-full text-white sm:text-xs md:text-lg hover:border-[#4287FF] hover:text-white w-full sm:w-[215px] text-center">
                         {{ __('messages.download_app') }}
                     </a>
 
-                    <a href="#prices" class="flex justify-center items-center py-2 px-6 bg-[#2E69A9] rounded-full text-white text-lg hover:bg-blue-600 w-full sm:w-[215px] text-center">
+                    <a href="#prices" class="flex justify-center items-center py-2 px-6 bg-[#2E69A9] rounded-full text-white sm:text-xs md:text-lg hover:bg-blue-600 w-full sm:w-[215px] text-center">
                         {{ __('messages.price') }}
                     </a>
                 </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-20 flex justify-center">
             <div class="text-center mb-16 sm:mb-12">
-                <p class="text-[20px] sm:text-[18px] font-lato text-white text-center">
+                <p class="md:text-[20px] sm:text-[12px] p-4 font-lato text-white text-center">
                     {{ __('messages.productive_workspace_description') }}
                 </p>
             </div>
@@ -45,44 +45,44 @@
         <!-- How It Works? -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-40">
             <div class="text-center mb-16 sm:mb-12">
-                <h3 class="text-[44px] sm:text-[36px] lg:text-[44px] font-oswald font-normal text-white leading-tight">
+                <h3 class="text-2xl md:text-[44px] font-oswald font-normal text-white leading-tight">
                     {{ __('messages.how_it_works') }}
                 </h3>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="border-[2px] border-[#4287FF] rounded-3xl p-6 lg:p-8">
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="border-[2px] border-[#4287FF] rounded-3xl p-2 md:p-6 ">
                     <div class="flex items-center mb-4 sm:mb-2">
-                        <div class="w-32 h-32 sm:w-24 sm:h-24 bg-[#D9D9D9] rounded-full flex-shrink-0"></div>
-                        <h4 class="ml-4 text-[32px] sm:text-[24px] md:text-[32px] font-oswald font-semibold text-white lg:p-4">
+                        <div class="w-12 h-12 md:w-32 md:h-32 bg-[#D9D9D9] rounded-full flex-shrink-0"></div>
+                        <h4 class="ml-4 text-[18px] sm:text-[24px] md:text-[32px] font-oswald font-semibold text-white lg:p-4">
                             {{ __('messages.choose_your_setup') }}
                         </h4>
                     </div>
-                    <p class="text-[20px] sm:text-[16px] md:text-[20px] font-lato text-white lg:p-8">
+                    <p class="text-[12px] md:text-[20px] font-lato text-white p-4 lg:p-8">
                         {{ __('messages.choose_your_setup_text') }}
                     </p>
                 </div>
 
-                <div class="border-[2px] border-[#4287FF] rounded-3xl p-6 lg:p-8">
+                <div class="border-[2px] border-[#4287FF] rounded-3xl p-2 md:p-6 ">
                     <div class="flex items-center mb-4 sm:mb-2">
-                        <div class="w-32 h-32 sm:w-24 sm:h-24 bg-[#D9D9D9] rounded-full flex-shrink-0"></div>
-                        <h4 class="ml-4 text-[32px] sm:text-[24px] md:text-[32px] font-oswald font-semibold text-white lg:p-4">
+                        <div class="w-12 h-12 md:w-32 md:h-32 bg-[#D9D9D9] rounded-full flex-shrink-0"></div>
+                        <h4 class="ml-4 text-[18px] sm:text-[24px] md:text-[32px] font-oswald font-semibold text-white lg:p-4">
                             {{ __('messages.reserve_your_spot') }}
                         </h4>
                     </div>
-                    <p class="text-[20px] sm:text-[16px] md:text-[20px] font-lato text-white lg:p-8">
+                    <p class="text-[12px] md:text-[20px] font-lato text-white p-4 lg:p-8">
                         {{ __('messages.reserve_your_spot_text') }}
                     </p>
                 </div>
 
-                <div class="border-[2px] border-[#4287FF] rounded-3xl p-6 lg:p-8">
+                <div class="border-[2px] border-[#4287FF] rounded-3xl p-2 md:p-6 ">
                     <div class="flex items-center mb-4 sm:mb-2">
-                        <div class="w-32 h-32 sm:w-24 sm:h-24 bg-[#D9D9D9] rounded-full flex-shrink-0"></div>
-                        <h4 class="ml-4 text-[32px] sm:text-[24px] md:text-[32px] font-oswald font-semibold text-white lg:p-4">
+                        <div class="w-12 h-12 md:w-32 md:h-32 bg-[#D9D9D9] rounded-full flex-shrink-0"></div>
+                        <h4 class="ml-4 text-[18px] sm:text-[24px] md:text-[32px] font-oswald font-semibold text-white lg:p-4">
                             {{ __('messages.enjoy_your_time') }}
                         </h4>
                     </div>
-                    <p class="text-[20px] sm:text-[16px] md:text-[20px] font-lato text-white lg:p-8">
+                    <p class="text-[12px] md:text-[20px] font-lato text-white p-4 lg:p-8">
                         {{ __('messages.enjoy_your_time_text') }}
                     </p>
                 </div>
@@ -103,10 +103,10 @@
                     <div class="flex items-start gap-4 mt-2 lg:mt-4">
                         <div class="bg-white w-[7px] h-[120px] mt-2"></div>
                         <div>
-                            <h3 class="text-[36px] md:text-[48px] lg:text-[52px] font-oswald font-normal text-[#4287ff] leading-tight mb-1">
+                            <h3 class="text-[26px] md:text-[48px] lg:text-[52px] font-oswald font-normal text-[#4287ff] leading-tight mb-1">
                                 {{ __('messages.happy_hours_title') }}
                             </h3>
-                            <h3 class="text-[36px] md:text-[48px] lg:text-[52px] font-oswald font-normal text-white leading-tight">
+                            <h3 class="text-[26px] md:text-[48px] lg:text-[52px] font-oswald font-normal text-white leading-tight">
                                 {{ __('messages.happy_hours_subtitle') }}
                             </h3>
                         </div>
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="flex items-end lg:justify-end lg:w-1/3 h-full mb-2 sm:pt-10">
-                    <p class="text-white text-[18px] font-normal max-w-[370px] ml-8 mb-4">
+                    <p class="text-white text-[12px] md:text-[18px] font-normal max-w-[180px] md:max-w-[370px] ml-8 mb-4">
                         {{ __('messages.start_your_day') }}
                     </p>
                 </div>
@@ -122,8 +122,8 @@
         </div>
         <!-- About Us -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-center font-oswald text-[64px] font-normal text-white">{{ __('messages.about_us') }}</h2>
+            <div class="text-center mb-2 md:mb-12">
+                <h2 class="text-center font-oswald text-[40px] md:text-[64px] font-normal text-white">{{ __('messages.about_us') }}</h2>
             </div>
             <div class="text-white flex flex-col lg:flex-row items-center lg:items-start p-8 gap-8">
                 <div class=" flex justify-start items-center">
@@ -132,13 +132,13 @@
                 </div>
                 </div>
                 <div class="lg:w-1/2 text-left">
-                    <p class="text-[20px] font-lato font-normal mb-4">
+                    <p class="text-[12px] md:text-[20px] font-lato font-normal mb-4">
                         {{ __('messages.about_us_intro') }}
                     </p>
-                    <p class="text-[20px] font-lato font-normal mb-4">
+                    <p class="text-[12px] md:text-[20px] font-lato font-normal mb-4">
                         {{ __('messages.about_us_technology') }}
                     </p>
-                    <p class="text-[20px] font-lato font-normal">
+                    <p class="text-[12px] md:text-[20px] font-lato font-normal">
                         {{ __('messages.about_us_environment') }}
                     </p>
                 </div>
@@ -151,57 +151,57 @@
         <!-- Why Choose Us? -->
         <div class="max-w-7xl mb-20 mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-center font-oswald text-[64px] font-normal text-white">{{ __('messages.why_choose_us') }}</h2>
+                <h2 class="text-center font-oswald text-[40px] md:text-[64px] font-normal text-white">{{ __('messages.why_choose_us') }}</h2>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-[#08256780] text-white rounded-xl shadow-lg p-6 relative"
                     style="box-shadow: 10px 10px 0px #301122;">
-                    <div class="w-28 h-28 mb-4 bg-white rounded-full flex items-center justify-center">
+                    <div class="w-16 h-16 md:w-28 md:h-28 mb-4 bg-white rounded-full flex items-center justify-center">
                         <span class="block w-8 h-8"></span>
                     </div>
-                    <h3 class="font-oswald text-[26px] font-normal mb-4 text-left">
+                    <h3 class="font-oswald text-[12px] md:text-[26px] font-normal mb-4 text-left">
                         {{ __('messages.simple_and_quick_reservation') }}
                     </h3>
-                    <p class="text-[18px] font-lato font-normal text-left">
+                    <p class="text-[9px] md:text-[18px] font-lato font-normal text-left">
                         {{ __('messages.simple_and_quick_reservation_text') }}
                     </p>
                 </div>
 
                 <div class="bg-[#D9D9D936] text-white rounded-xl shadow-lg p-6 relative"
                     style="box-shadow: 10px 10px 4px #301122;">
-                    <div class="w-28 h-28 mb-4 bg-white rounded-full flex items-center justify-center">
+                    <div class="w-16 h-16 md:w-28 md:h-28 mb-4 bg-white rounded-full flex items-center justify-center">
                         <span class="block w-8 h-8"></span>
                     </div>
-                    <h3 class="font-oswald text-[26px] font-normal mb-4 text-left">
+                    <h3 class="font-oswald text-[12px] md:text-[26px] font-normal mb-4 text-left">
                         {{ __('messages.high_performance_equipment') }}
                     </h3>
-                    <p class="text-[18px] font-lato font-normal text-left">
+                    <p class="text-[9px] md:text-[18px] font-lato font-normal text-left">
                         {{ __('messages.high_performance_equipment_text') }}
                     </p>
                 </div>
 
                 <div class="bg-[#08256780] text-white rounded-xl shadow-lg p-6 relative"
                     style="box-shadow: 10px 10px 4px #301122;">
-                    <div class="w-28 h-28 mb-4 bg-white rounded-full flex items-center justify-center">
+                    <div class="w-16 h-16 md:w-28 md:h-28 mb-4 bg-white rounded-full flex items-center justify-center">
                         <span class="block w-8 h-8"></span>
                     </div>
-                    <h3 class="font-oswald text-[26px] font-normal mb-4 text-left">
+                    <h3 class="font-oswald text-[12px] md:text-[26px] font-normal mb-4 text-left">
                         {{ __('messages.flexible_reservation_options') }}
                     </h3>
-                    <p class="text-[18px] font-lato font-normal text-left">
+                    <p class="text-[9px] md:text-[18px] font-lato font-normal text-left">
                         {{ __('messages.flexible_reservation_options_text') }}
                     </p>
                 </div>
 
                 <div class="bg-[#D9D9D936] text-white rounded-xl shadow-lg p-6 relative"
                     style="box-shadow: 10px 10px 4px #301122;">
-                    <div class="w-28 h-28 mb-4 bg-white rounded-full flex items-center justify-center">
+                    <div class="w-16 h-16 md:w-28 md:h-28 mb-4 bg-white rounded-full flex items-center justify-center">
                         <span class="block w-8 h-8"></span>
                     </div>
-                    <h3 class="font-oswald text-[26px] font-normal mb-4 text-left">
+                    <h3 class="font-oswald text-[12px] md:text-[26px font-normal mb-4 text-left">
                         {{ __('messages.professional_environment') }}
                     </h3>
-                    <p class="text-[18px] font-lato font-normal text-left">
+                    <p class="text-[9px] md:text-[18px] font-lato font-normal text-left">
                         {{ __('messages.professional_environment_text') }}
                     </p>
                 </div>
@@ -217,13 +217,13 @@
         <div class="max-w-8xl mb-20 mx-auto sm:px-6 lg:px-8">
             <div class="text-white overflow-hidden sm:rounded-lg">
 
-                <h2 class="text-center font-oswald text-[64px] font-normal text-white">
+                <h2 class="text-center font-oswald text-[40px] md:text-[64px] font-normal text-white">
                     {{ __('messages.our_equipment') }}
                 </h2>
-                <h3 class="text-center font-oswald text-[40px] font-normal text-white ">
+                <h3 class="text-center font-oswald text-[22px] md:text-[40px] font-normal text-white ">
                         {{ __('messages.high_performance') }}
                 </h3>
-                <p class="text-center text-[20px] overflow-hidden mb-10 mt-2 mx-auto w-[650px]">
+                <p class="text-center text-[12px] md:text-[20px] overflow-hidden mb-10 mt-2 mx-auto p-2 md:w-[650px]">
                     {{ __('messages.explore_our') }}
                 </p>
                 <div class="swiper-wrapper-container">
@@ -232,8 +232,8 @@
                             <div class="swiper-slide">
                                 <div class="bg-gray-300 aspect-square mb-6 rounded-3xl"></div>
                                 <div class="slide-content">
-                                    <h3 class="mb-8 text-[#A4C5FF] text-[24px] font-bold">Professional Workstations for Design and Modeling</h3>
-                                    <p>Processor: Intel Xeon / AMD Ryzen Threadripper<br>
+                                    <h3 class="mb-2 md:mb-8 text-[#A4C5FF] text-[16px] md:text-[24px] font-bold">Professional Workstations for Design and Modeling</h3>
+                                    <p class="text-[10px] md:text-[18px]">Processor: Intel Xeon / AMD Ryzen Threadripper<br>
                                     Graphics Card: NVIDIA Quadro RTX 5000 / GeForce RTX 3080<br>
                                     RAM: 64GB DDR4<br>
                                     Storage: 2TB NVMe SSD<br>
@@ -245,8 +245,8 @@
                             <div class="swiper-slide">
                                 <div class="bg-gray-300 aspect-square mb-6 rounded-3xl"></div>
                                 <div class="slide-content">
-                                    <h3 class="mb-8 text-[#A4C5FF] text-[24px] font-bold">Professional Workstations for Design and Modeling</h3>
-                                    <p>Processor: Intel Xeon / AMD Ryzen Threadripper<br>
+                                    <h3 class="mb-2 md:mb-8 text-[#A4C5FF] text-[16px] md:text-[24px] font-bold">Professional Workstations for Design and Modeling</h3>
+                                    <p class="text-[10px] md:text-[18px]">Processor: Intel Xeon / AMD Ryzen Threadripper<br>
                                     Graphics Card: NVIDIA Quadro RTX 5000 / GeForce RTX 3080<br>
                                     RAM: 64GB DDR4<br>
                                     Storage: 2TB NVMe SSD<br>
@@ -258,8 +258,8 @@
                             <div class="swiper-slide">
                                 <div class="bg-gray-300 aspect-square mb-6 rounded-3xl"></div>
                                 <div class="slide-content">
-                                    <h3 class="mb-8 text-[#A4C5FF] text-[24px] font-bold">Gaming and High-Performance Setups</h3>
-                                    <p>Processor: Intel Core i9 / AMD Ryzen 9<br>
+                                    <h3 class="mb-2 md:mb-8 text-[#A4C5FF] text-[16px] md:text-[24px] font-bold">Gaming and High-Performance Setups</h3>
+                                    <p class="text-[10px] md:text-[18px]">Processor: Intel Core i9 / AMD Ryzen 9<br>
                                     Graphics Card: NVIDIA GeForce RTX 3090 / AMD Radeon RX 6900 XT<br>
                                     RAM: 32GB DDR4<br>
                                     Storage: 1TB NVMe SSD + 2TB HDD<br>
@@ -271,8 +271,8 @@
                             <div class="swiper-slide">
                                 <div class="bg-gray-300 aspect-square mb-6 rounded-3xl"></div>
                                 <div class="slide-content">
-                                    <h3 class="mb-8 text-[#A4C5FF] text-[24px] font-bold">Gaming and High-Performance Setups</h3>
-                                    <p>Processor: Intel Core i9 / AMD Ryzen 9<br>
+                                    <h3 class="mb-2 md:mb-8 text-[#A4C5FF] text-[16px] md:text-[24px] font-bold">Gaming and High-Performance Setups</h3>
+                                    <p class="text-[10px] md:text-[18px]">Processor: Intel Core i9 / AMD Ryzen 9<br>
                                     Graphics Card: NVIDIA GeForce RTX 3090 / AMD Radeon RX 6900 XT<br>
                                     RAM: 32GB DDR4<br>
                                     Storage: 1TB NVMe SSD + 2TB HDD<br>
@@ -284,8 +284,8 @@
                             <div class="swiper-slide">
                                 <div class="bg-gray-300 aspect-square mb-6 rounded-3xl"></div>
                                 <div class="slide-content">
-                                    <h3 class="mb-8 text-[#A4C5FF] text-[24px] font-bold">Standard Workstations for Office</h3>
-                                    <p>Processor: Intel Core i7 / AMD Ryzen 7<br>
+                                    <h3 class="mb-2 md:mb-8 text-[#A4C5FF] text-[16px] md:text-[24px] font-bold">Standard Workstations for Office</h3>
+                                    <p class="text-[10px] md:text-[18px]">Processor: Intel Core i7 / AMD Ryzen 7<br>
                                     RAM: 16GB DDR4<br>
                                     Storage: 512GB SSD<br>
                                     Display: 24-inch, Full HD monitor<br>
@@ -296,8 +296,8 @@
                             <div class="swiper-slide">
                                 <div class="bg-gray-300 aspect-square mb-6 rounded-3xl"></div>
                                 <div class="slide-content">
-                                    <h3 class="mb-8 text-[#A4C5FF] text-[24px] font-bold">Standard Workstations for Office</h3>
-                                    <p>Processor: Intel Core i7 / AMD Ryzen 7<br>
+                                    <h3 class="mb-2 md:mb-8 text-[#A4C5FF] text-[16px] md:text-[24px] font-bold">Standard Workstations for Office</h3>
+                                    <p class="text-[10px] md:text-[18px]">Processor: Intel Core i7 / AMD Ryzen 7<br>
                                     RAM: 16GB DDR4<br>
                                     Storage: 512GB SSD<br>
                                     Display: 24-inch, Full HD monitor<br>
@@ -308,8 +308,8 @@
                             <div class="swiper-slide">
                                 <div class="bg-gray-300 aspect-square mb-6 rounded-3xl"></div>
                                 <div class="slide-content">
-                                    <h3 class="mb-8 text-[#A4C5FF] text-[24px] font-bold">Gaming and High-Performance Setups</h3>
-                                    <p>Processor: Intel Core i9 / AMD Ryzen 9<br>
+                                    <h3 class="mb-2 md:mb-8 text-[#A4C5FF] text-[16px] md:text-[24px] font-bold">Gaming and High-Performance Setups</h3>
+                                    <p class="text-[10px] md:text-[18px]">Processor: Intel Core i9 / AMD Ryzen 9<br>
                                     Graphics Card: NVIDIA GeForce RTX 3090 / AMD Radeon RX 6900 XT<br>
                                     RAM: 32GB DDR4<br>
                                     Storage: 1TB NVMe SSD + 2TB HDD<br>
@@ -321,8 +321,8 @@
                             <div class="swiper-slide">
                                 <div class="bg-gray-300 aspect-square mb-6 rounded-3xl"></div>
                                 <div class="slide-content">
-                                    <h3 class="mb-8 text-[#A4C5FF] text-[24px] font-bold">Gaming and High-Performance Setups</h3>
-                                    <p>Processor: Intel Core i9 / AMD Ryzen 9<br>
+                                    <h3 class="mb-2 md:mb-8 text-[#A4C5FF] text-[16px] md:text-[24px] font-bold">Gaming and High-Performance Setups</h3>
+                                    <p class="text-[10px] md:text-[18px]">Processor: Intel Core i9 / AMD Ryzen 9<br>
                                     Graphics Card: NVIDIA GeForce RTX 3090 / AMD Radeon RX 6900 XT<br>
                                     RAM: 32GB DDR4<br>
                                     Storage: 1TB NVMe SSD + 2TB HDD<br>
@@ -340,29 +340,29 @@
         <!-- Gallery -->
         <div class="max-w-7xl mb-20 mx-auto sm:px-6 lg:px-8">
 
-            <h2 class="text-center font-oswald text-[64px] font-normal text-white mb-20">
+            <h2 class="text-center font-oswald text-[40px] md:text-[64px] font-normal text-white mb-12 md:mb-20">
                 {{ __('messages.gallery') }}
             </h2>
 
-                <div class="grid grid-cols-[1fr,1fr,auto,1fr,1fr] gap-4 relative">
+                <div class="grid sm:grid-cols-[1fr,1fr,auto,1fr,1fr] grid-cols-2 gap-4 relative p-4">
                 <div class="space-y-4">
                     <div class="bg-gray-300 aspect-square"></div>
                     <div class="bg-gray-300 aspect-square"></div>
                     <div class="bg-gray-300 aspect-square"></div>
                     <div class="bg-gray-300 aspect-square"></div>
                 </div>
-                <div class="space-y-4">
+                <div class="space-y-4 space-y-4 hidden sm:block">
                     <div class="bg-gray-300 aspect-square"></div>
                     <div class="bg-gray-300 aspect-square"></div>
                     <div class="bg-gray-300 aspect-square"></div>
                     <div class="bg-gray-300 aspect-square"></div>
                 </div>
-                <div class="flex justify-center items-center">
+                <div class="flex justify-center items-center hidden sm:flex">
                     <p class="text-white font-oswald sm:text-[8px] md:text-[30px] lg:text-[40px] font-normal [writing-mode:vertical-lr]">
                         {{ __('messages.gallery_text') }}
                     </p>
                 </div>
-                <div class="space-y-4">
+                <div class="space-y-4 hidden sm:block">
                     <div class="bg-gray-300 aspect-square"></div>
                     <div class="bg-gray-300 aspect-square"></div>
                     <div class="bg-gray-300 aspect-square"></div>

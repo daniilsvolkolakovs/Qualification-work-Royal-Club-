@@ -565,7 +565,7 @@
                 <h2 class="text-center font-oswald text-[40px] md:text-[44px] font-normal text-white mb-10">
                     {{ __('messages.contacts_us') }}
                 </h2>
-                <p class="text-center text-[12px] md:text-[24px] text-gray-400 mb-12 sm:mb-24">
+                <p class="text-center text-[12px] md:text-[20px] text-gray-400 mb-12 sm:mb-24">
                     {{ __('messages.contacts_description') }}
                 </p>
 

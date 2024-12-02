@@ -3,15 +3,15 @@
         <!-- Contact us -->
         <div class="max-w-7xl mb-20 mx-auto sm:px-6 lg:px-8">
             <div class="text-white overflow-hidden p-4 sm:p-10">
-                <h2 class="text-center font-oswald text-[44px] font-normal text-white mb-10">
+                <h2 class="text-center font-oswald text-[40px] md:text-[44px] font-normal text-white mb-10">
                     {{ __('messages.contacts_us') }}
                 </h2>
-                <p class="text-center text-gray-400 mb-12 sm:mb-24">
+                <p class="text-center text-[12px] md:text-[24px] text-gray-400 mb-12 sm:mb-24">
                     {{ __('messages.contacts_description') }}
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start">
-                    <div class="w-full">
+                    <div class="w-full order-2 md:order-1">
                         <div class="h-[300px] sm:h-[450px] lg:h-[500px] w-full md:w-[100%] mx-auto">
                             <div id="map" style="height: 100%; width: 100%;" class="mb-8 md:mb-0"></div>
                             @push('styles')
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full text-[#A4C5FF] py-8">
+                    <div class="w-full order-1 md:order-2 text-[#A4C5FF] py-8 p-12 md:p-0">
                         <div>
                             <h3 class="text-[32px] sm:text-[44px] font-bold text-[#A4C5FF] mb-6">
                                 {{ __('messages.contact_details') }}

@@ -43,6 +43,14 @@ class AdminController extends Controller
     // Method for updating user
     public function update(Request $request, $id)
     {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|min:1', // Name must be at least 1 character
+            'email' => 'required|email|unique:users,email,' . $id, // Email must be unique except for the current user
+            'usertype' => 'required|string|in:admin,manager,user', // Usertype validation
+        ]);
+
+        // Find the user and update their information
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;

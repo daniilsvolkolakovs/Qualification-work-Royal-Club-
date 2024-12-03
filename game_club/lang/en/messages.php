@@ -178,4 +178,11 @@ return [
     'monthly_passes' => 'Monthly Passes',
     'download_app' => 'Download our app!',
     'app_description' => 'Our convenient application will help you',
+    'required' => 'The :attribute field is required.',
+    'unique' => 'The :attribute is already taken.',
+    'attributes' => [
+        'name' => 'Name',
+        'email' => 'Email',
+        'usertype' => 'User Role',
+    ],
 ];

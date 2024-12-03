@@ -12,21 +12,40 @@
                     @csrf
                     <div class="mb-4">
                         <label for="name" class="block text-lg font-medium text-[#625E5E]">@lang('messages.name')</label>
-                        <input type="text" name="name" value="{{ $user->name }}" class="mt-1 block w-full rounded-3xl border-0">
+                        <input 
+                            type="text" 
+                            name="name" 
+                            value="{{ old('name', $user->name) }}" 
+                            class="mt-1 block w-full rounded-3xl border-0 @error('name') border-red-500 @enderror">
+                        @error('name')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     </div>
                     
                     <div class="mb-4">
                         <label for="email" class="block text-lg font-medium text-[#625E5E]">@lang('messages.email')</label>
-                        <input type="email" name="email" value="{{ $user->email }}" class="mt-1 block w-full rounded-3xl border-0">
+                        <input 
+                            type="email" 
+                            name="email" 
+                            value="{{ old('email', $user->email) }}" 
+                            class="mt-1 block w-full rounded-3xl border-0 @error('email') border-red-500 @enderror">
+                        @error('email')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
                         <label for="usertype" class="block text-lg font-medium text-[#625E5E]">@lang('messages.role')</label>
-                        <select name="usertype" class="mt-1 block w-full rounded-3xl border-0">
-                            <option value="admin" {{ $user->usertype == 'admin' ? 'selected' : '' }}>@lang('messages.admin')</option>
-                            <option value="manager" {{ $user->usertype == 'manager' ? 'selected' : '' }}>@lang('messages.manager')</option>
-                            <option value="user" {{ $user->usertype == 'user' ? 'selected' : '' }}>@lang('messages.user')</option>
+                        <select 
+                            name="usertype" 
+                            class="mt-1 block w-full rounded-3xl border-0 @error('usertype') border-red-500 @enderror">
+                            <option value="admin" {{ old('usertype', $user->usertype) == 'admin' ? 'selected' : '' }}>@lang('messages.admin')</option>
+                            <option value="manager" {{ old('usertype', $user->usertype) == 'manager' ? 'selected' : '' }}>@lang('messages.manager')</option>
+                            <option value="user" {{ old('usertype', $user->usertype) == 'user' ? 'selected' : '' }}>@lang('messages.user')</option>
                         </select>
+                        @error('usertype')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <x-button type="submit">@lang('messages.update_user')</x-button>

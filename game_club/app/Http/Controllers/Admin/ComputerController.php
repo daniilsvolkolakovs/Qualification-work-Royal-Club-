@@ -42,8 +42,8 @@ class ComputerController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|integer|min:1',
+            'price' => 'required|numeric|min:0|max:1000',
+            'quantity' => 'required|integer|min:1|max:255',
         ]);
 
         $quantity = $request->input('quantity');
@@ -74,7 +74,7 @@ class ComputerController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0|max:1000',
         ]);
 
         $computer = Computer::findOrFail($id);

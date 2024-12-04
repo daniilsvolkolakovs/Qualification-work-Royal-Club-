@@ -10,6 +10,15 @@
             <div class="bg-[#D9D9D9] overflow-hidden sm:rounded-3xl p-6">
                 <form action="{{ route('admin.computers.store') }}" method="POST">
                     @csrf
+                    @if ($errors->any())
+                        <div class="bg-red-500 text-white p-2 mb-4 rounded">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <div class="mb-4">
                         <label for="name" class="block text-lg font-medium text-[#625E5E]">@lang('messages.name')</label>

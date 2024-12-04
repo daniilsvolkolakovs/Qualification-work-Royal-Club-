@@ -173,4 +173,5 @@ return [
     'buy_plan' => 'Iegādāties plānu',
     'download_app' => 'Lejupielādējiet mūsu lietotni!',
     'app_description' => 'Mūsu ērta lietotne palīdzēs jums',
+    'error' => 'Šis dators ir rezervēts izvēlētajā laikā.',
 ];

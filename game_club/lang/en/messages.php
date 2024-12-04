@@ -185,4 +185,5 @@ return [
         'email' => 'Email',
         'usertype' => 'User Role',
     ],
+    'error' => 'This computer is booked at the selected time.',
 ];

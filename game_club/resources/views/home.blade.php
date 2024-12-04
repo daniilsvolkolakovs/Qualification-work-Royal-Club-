@@ -198,7 +198,7 @@
                     <div class="w-16 h-16 md:w-28 md:h-28 mb-4 bg-white rounded-full flex items-center justify-center">
                         <span class="block w-8 h-8"></span>
                     </div>
-                    <h3 class="font-oswald text-[12px] md:text-[26px font-normal mb-4 text-left">
+                    <h3 class="font-oswald text-[12px] md:text-[26px] font-normal mb-4 text-left">
                         {{ __('messages.professional_environment') }}
                     </h3>
                     <p class="text-[9px] md:text-[18px] font-lato font-normal text-left">

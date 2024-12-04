@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
+use App\Jobs\DeletePendingBooking;
 
 class BookingController extends Controller
 {
@@ -220,6 +221,8 @@ class BookingController extends Controller
             'end_time' => $endTime,
             'payment_status' => 'pending',
         ]);
+
+        DeletePendingBooking::dispatch($booking->id)->delay(now()->addMinute());
 
         return redirect($session->url);
     }

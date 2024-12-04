@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 @else
-                    <!-- User/Admin -->
+
                     @if (session('success'))
                         <div class="bg-green-500 text-white p-2 mb-4 rounded">
                             {{ session('success') }}
@@ -33,79 +33,52 @@
 
                     @if (session('error'))
                         <div class="bg-red-500 text-white p-2 mb-4 rounded">
-                            @lang('messages.error')
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="bg-red-500 text-white p-2 mb-4 rounded">
+                            <ul class="list-disc pl-4">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
 
                     @if(auth()->user()->usertype !== 'manager')
-                    <!-- Price -->
-                    <div class="max-w-7xl mb-20 mx-auto sm:px-6 lg:px-8" id="prices">
-                        <div class="text-white overflow-hidden sm:rounded-lg p-2">
-
-                            <h2 class="text-center font-oswald text-[40px] font-normal text-[#625E5E] mb-10">
-                                {{ __('messages.price') }}
-                            </h2>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-
-                                <div class="bg-[#DCE9FF] rounded-3xl p-6 text-center">
-                                    <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                                    <p class="text-4xl font-oswald text-[72px] text-[#625E5E] mt-6 mb-12">150$</p>
-                                    <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
-                                </div>
-
-                                <div class="bg-[#DCE9FF] rounded-3xl p-6 text-center">
-                                    <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                                    <p class="text-4xl font-oswald text-[72px] text-[#625E5E] mt-6 mb-12">150$</p>
-                                    <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
-                                </div>
-                                
-                                <div class="bg-[#DCE9FF] rounded-3xl p-6 text-center">
-                                    <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                                    <p class="text-4xl font-oswald text-[72px] text-[#625E5E] mt-6 mb-12">150$</p>
-                                    <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
-                                </div>
-
-                                <div class="bg-[#DCE9FF] rounded-3xl p-6 text-center">
-                                    <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                                    <p class="text-4xl font-oswald text-[72px] text-[#625E5E] mt-6 mb-12">150$</p>
-                                    <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
-                                </div>
-
-                                <div class="bg-[#DCE9FF] rounded-3xl p-6 text-center">
-                                    <h3 class="text-lg font-oswald text-[32px] text-black mb-2">Standard</h3>
-                                    <p class="text-4xl font-oswald text-[72px] text-[#625E5E] mt-6 mb-12">150$</p>
-                                    <p class="text-sm text-black text-[18px] mt-6 mb-2">some description</p>
-                                </div>
+                        <form action="{{ route('bookings.pay') }}" method="POST" class="space-y-4">
+                            @csrf
+                            <div>
+                                <label for="computer_id" class="block text-lg font-medium text-[#625E5E]">@lang('messages.select_computer')</label>
+                                <select name="computer_id" id="computer_id" class="form-select mt-1 block w-full rounded-3xl border-0" required>
+                                    @foreach($computers as $computer)
+                                        <option value="{{ $computer->id }}">{{ $computer->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
-                    </div>
 
-                    <form action="{{ route('bookings.pay') }}" method="POST" class="space-y-4">
-                        @csrf
-                        <div>
-                            <label for="computer_id" class="block text-lg font-medium text-[#625E5E]">@lang('messages.select_computer')</label>
-                            <select name="computer_id" id="computer_id" class="form-select mt-1 block w-full rounded-3xl border-0" required>
-                                @foreach($computers as $computer)
-                                    <option value="{{ $computer->id }}">{{ $computer->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                            <div>
+                                <label for="start_time" class="block text-lg font-medium text-[#625E5E]">@lang('messages.start_time')</label>
+                                <input type="datetime-local" name="start_time" id="start_time" class="form-input mt-1 block w-full rounded-3xl border-0" required>
+                                @error('start_time')
+                                    <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
 
-                        <div>
-                            <label for="start_time" class="block text-lg font-medium text-[#625E5E]">@lang('messages.start_time')</label>
-                            <input type="datetime-local" name="start_time" id="start_time" class="form-input mt-1 block w-full rounded-3xl border-0" required>
-                        </div>
+                            <div class="pb-6">
+                                <label for="end_time" class="block text-lg font-medium text-[#625E5E]">@lang('messages.end_time')</label>
+                                <input type="datetime-local" name="end_time" id="end_time" class="form-input mt-1 block w-full rounded-3xl border-0" required>
+                                @error('end_time')
+                                    <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
 
-                        <div class="pb-6">
-                            <label for="end_time" class="block text-lg font-medium text-[#625E5E]">@lang('messages.end_time')</label>
-                            <input type="datetime-local" name="end_time" id="end_time" class="form-input mt-1 block w-full rounded-3xl border-0" required>
-                        </div>
-
-                        <x-button type="submit" class="py-3 px-6">
-                            @lang('messages.pay_and_book')
-                        </x-button>
-                    </form>
+                            <x-button type="submit" class="py-3 px-6">
+                                @lang('messages.pay_and_book')
+                            </x-button>
+                        </form>
                     @endif
 
                     @if(auth()->user()->usertype !== 'manager' && $bookings->isNotEmpty())

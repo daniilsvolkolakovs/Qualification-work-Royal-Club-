@@ -77,7 +77,7 @@ class BookingController extends Controller
     {
         $request->validate([
             'computer_id' => 'required|exists:computers,id',
-            'start_time' => 'required|date',
+            'start_time' => 'required|date|after_or_equal:now',
             'end_time' => 'required|date|after:start_time',
         ]);
 
@@ -178,7 +178,7 @@ class BookingController extends Controller
     {
         $request->validate([
             'computer_id' => 'required|exists:computers,id',
-            'start_time' => 'required|date',
+            'start_time' => 'required|date|after_or_equal:now',
             'end_time' => 'required|date|after:start_time',
         ]);
 

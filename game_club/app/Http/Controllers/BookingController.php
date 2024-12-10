@@ -99,7 +99,7 @@ class BookingController extends Controller
             ->first(); 
 
         if ($overlappingBooking) {
-            return back()->with('error', "This computer is already booked. It will be available after " . $overlappingBooking->end_time->format('H:i'));
+            return back()->with('error', "This computer is booked at the selected time. It will be available after " . $overlappingBooking->end_time->format('H:i'));
         }
 
         Booking::create([

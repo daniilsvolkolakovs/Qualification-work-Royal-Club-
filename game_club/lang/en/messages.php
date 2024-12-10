@@ -25,7 +25,6 @@ return [
     'computers' => 'Computres',
     'computer_management' => 'Computer Management',
     'all_computers' => 'All Computers',
-    'computer_session_success' => 'Computers successfully created or updated!',
     'create_computer' => 'Create New Computer',
     'price' => 'Price',
     'edit' => 'Edit',
@@ -186,4 +185,7 @@ return [
         'usertype' => 'User Role',
     ],
     'error' => 'This computer is booked at the selected time.',
+    'computer_added_successfully' => 'The computer was successfully added!',
+    'computer_updated_successfully' => 'The computer was successfully updated!',
+    'computer_deleted_successfully' => 'The computer was successfully deleted!',
 ];

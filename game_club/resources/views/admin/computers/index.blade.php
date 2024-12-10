@@ -12,7 +12,7 @@
 
                 @if (session('success'))
                     <div class="bg-green-500 text-white p-2 mb-4 rounded">
-                        @lang('messages.computer_session_success')
+                        {{ session('success') }}
                     </div>
                 @endif
 

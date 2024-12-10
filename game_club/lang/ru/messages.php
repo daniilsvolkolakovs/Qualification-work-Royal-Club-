@@ -178,4 +178,7 @@ return [
     'download_app' => 'Скачайте наше приложение!',
     'app_description' => 'Наше удобное приложение поможет вам',
     'error' => 'Этот компьютер забронирован на выбранное время.',
+    'computer_added_successfully' => 'Компьютер успешно добавлен!',
+    'computer_updated_successfully' => 'Компьютер успешно обновлён!',
+    'computer_deleted_successfully' => 'Компьютер успешно удалён!',
 ];

@@ -59,7 +59,7 @@ class ComputerController extends Controller
         }
 
         // Flash message for successful creation
-        session()->flash('success', 'Компьютеры успешно добавлены!');
+        session()->flash('success', __('messages.computer_added_successfully'));
 
         return redirect()->route('admin.computers.index');
     }
@@ -84,7 +84,7 @@ class ComputerController extends Controller
         ]);
 
         // Flash message for successful update
-        session()->flash('success', 'Компьютер успешно обновлён!');
+        session()->flash('success', __('messages.computer_updated_successfully'));
 
         return redirect()->route('admin.computers.index');
     }
@@ -95,7 +95,7 @@ class ComputerController extends Controller
         $computer->delete();
 
         // Flash message for successful deletion
-        session()->flash('success', 'Компьютер успешно удалён!');
+        session()->flash('success', __('messages.computer_deleted_successfully'));
 
         return redirect()->route('admin.computers.index');
     }

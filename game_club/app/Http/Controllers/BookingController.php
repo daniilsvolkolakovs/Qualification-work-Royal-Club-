@@ -59,14 +59,9 @@ class BookingController extends Controller
         $startTime = Carbon::parse($request->start_time);
         $endTime = Carbon::parse($request->end_time);
 
-        // Find available computers
         $availableComputers = Computer::whereDoesntHave('bookings', function ($query) use ($startTime, $endTime) {
-            $query->whereBetween('start_time', [$startTime, $endTime])
-                  ->orWhereBetween('end_time', [$startTime, $endTime])
-                  ->orWhere(function ($query) use ($startTime, $endTime) {
-                      $query->where('start_time', '<=', $startTime)
-                            ->where('end_time', '>=', $endTime);
-                  });
+            $query->where('start_time', '<', $endTime)
+                ->where('end_time', '>', $startTime);
         })->get();
 
         return response()->json($availableComputers);
@@ -86,13 +81,27 @@ class BookingController extends Controller
 
         $computer = Computer::findOrFail($request->computer_id);
 
-        // Check availability
-        if ($computer->bookings()->whereBetween('start_time', [$startTime, $endTime])->exists() ||
-            $computer->bookings()->whereBetween('end_time', [$startTime, $endTime])->exists()) {
-            return back()->with('error', 'This computer is booked at the selected time.');
+        $overlappingBooking = $computer->bookings()
+            ->where(function ($query) use ($startTime, $endTime) {
+                $query->where(function ($q) use ($startTime, $endTime) {
+                    $q->where('start_time', '<=', $startTime)
+                    ->where('end_time', '>', $startTime);
+                })
+                ->orWhere(function ($q) use ($startTime, $endTime) {
+                    $q->where('start_time', '<', $endTime)
+                    ->where('end_time', '>=', $endTime);
+                })
+                ->orWhere(function ($q) use ($startTime, $endTime) {
+                    $q->where('start_time', '>=', $startTime)
+                    ->where('end_time', '<=', $endTime);
+                });
+            })
+            ->first(); 
+
+        if ($overlappingBooking) {
+            return back()->with('error', "This computer is already booked. It will be available after " . $overlappingBooking->end_time->format('H:i'));
         }
 
-        // Create the booking
         Booking::create([
             'user_id' => auth()->id(),
             'computer_id' => $request->computer_id,
@@ -102,7 +111,7 @@ class BookingController extends Controller
 
         return back()->with('success', 'The computer has been successfully booked!');
     }
-
+    
     // Display all bookings for the manager
     public function index()
     {
@@ -181,22 +190,43 @@ class BookingController extends Controller
             'start_time' => 'required|date|after_or_equal:now',
             'end_time' => 'required|date|after:start_time',
         ]);
-
+    
         $startTime = Carbon::parse($request->start_time);
         $endTime = Carbon::parse($request->end_time);
-
+    
         $computer = Computer::findOrFail($request->computer_id);
-
-        if ($computer->bookings()->whereBetween('start_time', [$startTime, $endTime])->exists() ||
-            $computer->bookings()->whereBetween('end_time', [$startTime, $endTime])->exists()) {
-            return back()->with('error', 'This computer is booked at the selected time.');
+    
+        // Check if the computer is already booked during the selected time
+        $overlappingBooking = $computer->bookings()->where(function ($query) use ($startTime, $endTime) {
+            $query->where(function ($q) use ($startTime, $endTime) {
+                // Cases where the new booking starts within an existing booking time range
+                $q->where('start_time', '<=', $startTime)
+                  ->where('end_time', '>', $startTime);
+            })
+            ->orWhere(function ($q) use ($startTime, $endTime) {
+                // Cases where the new booking ends within an existing booking time range
+                $q->where('start_time', '<', $endTime)
+                  ->where('end_time', '>=', $endTime);
+            })
+            ->orWhere(function ($q) use ($startTime, $endTime) {
+                // Cases where the new booking fully overlaps an existing booking
+                $q->where('start_time', '>=', $startTime)
+                  ->where('end_time', '<=', $endTime);
+            });
+        })->orderBy('end_time', 'asc')->first(); // Sort by the end time of the existing booking
+    
+        if ($overlappingBooking) {
+            // If the computer is booked, display the time when it will be available
+            $availableAt = Carbon::parse($overlappingBooking->end_time)->format('H:i');
+            return back()->with('error', "This computer is booked at the selected time. It will be available after $availableAt.");
         }
-
+    
+        // Initialize Stripe and create the session
         Stripe::setApiKey(env('STRIPE_SECRET'));
-
-        $amount = 500; 
+    
+        $amount = 500;
         $description = "Booking for Computer {$computer->name}";
-
+    
         $session = StripeSession::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
@@ -213,7 +243,8 @@ class BookingController extends Controller
             'success_url' => route('bookings.confirm') . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => url()->previous(),
         ]);
-
+    
+        // Create the booking in the database
         $booking = Booking::create([
             'user_id' => auth()->id(),
             'computer_id' => $computer->id,
@@ -221,11 +252,12 @@ class BookingController extends Controller
             'end_time' => $endTime,
             'payment_status' => 'pending',
         ]);
-
+    
+        // Schedule the deletion of the booking if payment is not completed
         DeletePendingBooking::dispatch($booking->id)->delay(now()->addMinute());
-
+    
         return redirect($session->url);
-    }
+    }    
 
     public function confirmPayment(Request $request)
     {

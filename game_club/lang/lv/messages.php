@@ -174,4 +174,7 @@ return [
     'download_app' => 'Lejupielādējiet mūsu lietotni!',
     'app_description' => 'Mūsu ērta lietotne palīdzēs jums',
     'error' => 'Šis dators ir rezervēts izvēlētajā laikā.',
+    'computer_added_successfully' => 'Dators veiksmīgi pievienots!',
+    'computer_updated_successfully' => 'Dators veiksmīgi atjaunināts!',
+    'computer_deleted_successfully' => 'Dators veiksmīgi izdzēsts!',
 ];

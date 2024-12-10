@@ -190,48 +190,58 @@ class BookingController extends Controller
             'start_time' => 'required|date|after_or_equal:now',
             'end_time' => 'required|date|after:start_time',
         ]);
-    
+        
         $startTime = Carbon::parse($request->start_time);
         $endTime = Carbon::parse($request->end_time);
-    
+        
         $computer = Computer::findOrFail($request->computer_id);
-    
+        
         // Check if the computer is already booked during the selected time
         $overlappingBooking = $computer->bookings()->where(function ($query) use ($startTime, $endTime) {
             $query->where(function ($q) use ($startTime, $endTime) {
                 // Cases where the new booking starts within an existing booking time range
                 $q->where('start_time', '<=', $startTime)
-                  ->where('end_time', '>', $startTime);
+                ->where('end_time', '>', $startTime);
             })
             ->orWhere(function ($q) use ($startTime, $endTime) {
                 // Cases where the new booking ends within an existing booking time range
                 $q->where('start_time', '<', $endTime)
-                  ->where('end_time', '>=', $endTime);
+                ->where('end_time', '>=', $endTime);
             })
             ->orWhere(function ($q) use ($startTime, $endTime) {
                 // Cases where the new booking fully overlaps an existing booking
                 $q->where('start_time', '>=', $startTime)
-                  ->where('end_time', '<=', $endTime);
+                ->where('end_time', '<=', $endTime);
             });
         })->orderBy('end_time', 'asc')->first(); // Sort by the end time of the existing booking
-    
+        
         if ($overlappingBooking) {
             // If the computer is booked, display the time when it will be available
             $availableAt = Carbon::parse($overlappingBooking->end_time)->format('H:i');
             return back()->with('error', "This computer is booked at the selected time. It will be available after $availableAt.");
         }
-    
-        // Initialize Stripe and create the session
+
+        // Calculate the duration of the booking in minutes
+        $durationInMinutes = $startTime->diffInMinutes($endTime);
+        
+        // Convert minutes to fractional hours
+        $durationInHours = $durationInMinutes / 60;
+        
+        // Get the price per hour of the computer
+        $pricePerHour = $computer->price;  // Assuming the 'price' is stored in the 'computers' table
+        
+        // Calculate the total amount to charge
+        $amount = $durationInHours * $pricePerHour * 100; // Convert to cents (Stripe requires cents)
+        $description = "Booking for Computer {$computer->name} from {$startTime->format('H:i')} to {$endTime->format('H:i')}";
+        
         Stripe::setApiKey(env('STRIPE_SECRET'));
-    
-        $amount = 500;
-        $description = "Booking for Computer {$computer->name}";
-    
+        
+        // Create the Stripe checkout session
         $session = StripeSession::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'price_data' => [
-                    'currency' => 'usd',
+                    'currency' => 'eur',
                     'product_data' => [
                         'name' => $description,
                     ],
@@ -243,7 +253,7 @@ class BookingController extends Controller
             'success_url' => route('bookings.confirm') . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => url()->previous(),
         ]);
-    
+        
         // Create the booking in the database
         $booking = Booking::create([
             'user_id' => auth()->id(),
@@ -252,12 +262,12 @@ class BookingController extends Controller
             'end_time' => $endTime,
             'payment_status' => 'pending',
         ]);
-    
+        
         // Schedule the deletion of the booking if payment is not completed
         DeletePendingBooking::dispatch($booking->id)->delay(now()->addMinute());
-    
+        
         return redirect($session->url);
-    }    
+    }
 
     public function confirmPayment(Request $request)
     {

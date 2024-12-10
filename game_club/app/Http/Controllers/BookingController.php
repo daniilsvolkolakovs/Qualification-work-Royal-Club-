@@ -193,6 +193,18 @@ class BookingController extends Controller
         
         $startTime = Carbon::parse($request->start_time);
         $endTime = Carbon::parse($request->end_time);
+
+        $dayOfWeek = $startTime->dayOfWeek;
+
+        if ($dayOfWeek >= 1 && $dayOfWeek <= 5) {
+            if ($startTime->hour < 9 || $startTime->hour >= 21 || $endTime->hour < 9 || $endTime->hour > 21) {
+                return back()->with('error', 'Bookings are only allowed between 09:00 and 21:00 on weekdays.');
+            }
+        } elseif ($dayOfWeek == 0 || $dayOfWeek == 6) {
+            if ($startTime->hour < 12 || $startTime->hour >= 18 || $endTime->hour < 12 || $endTime->hour > 18) {
+                return back()->with('error', 'Bookings are only allowed between 12:00 and 18:00 on weekends.');
+            }
+        }
         
         $computer = Computer::findOrFail($request->computer_id);
         
@@ -201,17 +213,17 @@ class BookingController extends Controller
             $query->where(function ($q) use ($startTime, $endTime) {
                 // Cases where the new booking starts within an existing booking time range
                 $q->where('start_time', '<=', $startTime)
-                ->where('end_time', '>', $startTime);
+                  ->where('end_time', '>', $startTime);
             })
             ->orWhere(function ($q) use ($startTime, $endTime) {
                 // Cases where the new booking ends within an existing booking time range
                 $q->where('start_time', '<', $endTime)
-                ->where('end_time', '>=', $endTime);
+                  ->where('end_time', '>=', $endTime);
             })
             ->orWhere(function ($q) use ($startTime, $endTime) {
                 // Cases where the new booking fully overlaps an existing booking
                 $q->where('start_time', '>=', $startTime)
-                ->where('end_time', '<=', $endTime);
+                  ->where('end_time', '<=', $endTime);
             });
         })->orderBy('end_time', 'asc')->first(); // Sort by the end time of the existing booking
         
@@ -220,12 +232,15 @@ class BookingController extends Controller
             $availableAt = Carbon::parse($overlappingBooking->end_time)->format('H:i');
             return back()->with('error', "This computer is booked at the selected time. It will be available after $availableAt.");
         }
-
+    
         // Calculate the duration of the booking in minutes
         $durationInMinutes = $startTime->diffInMinutes($endTime);
         
-        // Convert minutes to fractional hours
-        $durationInHours = $durationInMinutes / 60;
+        // Round the duration to the nearest 15 minutes
+        $roundedDurationInMinutes = ceil($durationInMinutes / 15) * 15;
+    
+        // Convert rounded minutes to fractional hours
+        $durationInHours = $roundedDurationInMinutes / 60;
         
         // Get the price per hour of the computer
         $pricePerHour = $computer->price;  // Assuming the 'price' is stored in the 'computers' table
@@ -241,7 +256,7 @@ class BookingController extends Controller
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'price_data' => [
-                    'currency' => 'eur',
+                    'currency' => 'eur', // Change currency to EUR
                     'product_data' => [
                         'name' => $description,
                     ],
@@ -267,7 +282,7 @@ class BookingController extends Controller
         DeletePendingBooking::dispatch($booking->id)->delay(now()->addMinute());
         
         return redirect($session->url);
-    }
+    }    
 
     public function confirmPayment(Request $request)
     {

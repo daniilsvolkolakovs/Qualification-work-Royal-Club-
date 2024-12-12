@@ -10,7 +10,6 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
     public function it_logs_in_with_correct_credentials()
     {
         $user = User::factory()->create([
@@ -27,7 +26,6 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    /** @test */
     public function it_fails_login_if_email_not_found()
     {
         $response = $this->post('/login', [
@@ -39,7 +37,6 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    /** @test */
     public function it_fails_login_if_password_is_incorrect()
     {
         $user = User::factory()->create([

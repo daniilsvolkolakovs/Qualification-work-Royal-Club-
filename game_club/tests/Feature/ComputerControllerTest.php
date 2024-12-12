@@ -31,14 +31,14 @@ class ComputerControllerTest extends TestCase
     }
 
     // Verifying that the administrator can edit the computer
-    public function testAdminCanEditComputer()
+    public function test_admin_can_edit_computer()
     {
         $response = $this->get(route('admin.computers.edit', ['id' => $this->computer->id]));
         $response->assertStatus(200);
     }
 
     // Verifying that the administrator can update the computer with the correct data
-    public function testAdminCanUpdateComputerWithValidData()
+    public function test_admin_can_update_computer_with_valid_data()
     {
         $response = $this->put(route('admin.computers.update', ['id' => $this->computer->id]), [
             'name' => 'Updated Computer',
@@ -53,7 +53,7 @@ class ComputerControllerTest extends TestCase
     }
 
     // Check that the administrator cannot update a computer with incorrect data
-    public function testAdminCannotUpdateComputerWithInvalidData()
+    public function test_admin_cannot_update_computer_with_invalid_data()
     {
         $response = $this->put(route('admin.computers.update', ['id' => $this->computer->id]), [
             'name' => '',
@@ -64,7 +64,7 @@ class ComputerControllerTest extends TestCase
     }
 
     // Check that the administrator cannot update a computer with incorrect price
-    public function testAdminCannotUpdateComputerWithPriceGreaterThan1000()
+    public function test_admin_cannot_update_computer_with_price_greater_than_1000()
     {
         $response = $this->put(route('admin.computers.update', ['id' => $this->computer->id]), [
             'name' => 'Updated Computer',
@@ -75,7 +75,7 @@ class ComputerControllerTest extends TestCase
     }
 
     //Check for boundary value creation request 
-    public function testAdminCannotCreateComputerWithInvalidQuantity()
+    public function test_admin_cannot_create_computer_with_invalid_quantity()
     {
         $response = $this->post(route('admin.computers.store'), [
             'name' => 'Test Computer',
@@ -96,7 +96,7 @@ class ComputerControllerTest extends TestCase
 
 
     // Verifying that an administrator can delete a computer
-    public function testAdminCanDeleteComputer()
+    public function test_admin_can_delete_computer()
     {
         $response = $this->delete(route('admin.computers.destroy', ['id' => $this->computer->id]));
 

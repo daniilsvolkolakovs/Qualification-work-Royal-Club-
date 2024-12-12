@@ -1,7 +1,7 @@
 php artisan serve
 npm run dev 
 php artisan queue:work
-php artisan test
+php artisan test --filter=LoginTest
 
 
 

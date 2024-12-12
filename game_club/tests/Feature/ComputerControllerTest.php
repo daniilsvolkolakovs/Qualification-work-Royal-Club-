@@ -30,14 +30,14 @@ class ComputerControllerTest extends TestCase
         ]);
     }
 
-    // Проверка, что администратор может редактировать компьютер
+    // Verifying that the administrator can edit the computer
     public function testAdminCanEditComputer()
     {
         $response = $this->get(route('admin.computers.edit', ['id' => $this->computer->id]));
         $response->assertStatus(200);
     }
 
-    // Проверка, что администратор может обновить компьютер с правильными данными
+    // Verifying that the administrator can update the computer with the correct data
     public function testAdminCanUpdateComputerWithValidData()
     {
         $response = $this->put(route('admin.computers.update', ['id' => $this->computer->id]), [
@@ -52,7 +52,7 @@ class ComputerControllerTest extends TestCase
         ]);
     }
 
-    // Проверка, что администратор не может обновить компьютер с некорректными данными
+    // Check that the administrator cannot update a computer with incorrect data
     public function testAdminCannotUpdateComputerWithInvalidData()
     {
         $response = $this->put(route('admin.computers.update', ['id' => $this->computer->id]), [
@@ -63,8 +63,39 @@ class ComputerControllerTest extends TestCase
         $response->assertSessionHasErrors(['name', 'price']);
     }
 
+    // Check that the administrator cannot update a computer with incorrect price
+    public function testAdminCannotUpdateComputerWithPriceGreaterThan1000()
+    {
+        $response = $this->put(route('admin.computers.update', ['id' => $this->computer->id]), [
+            'name' => 'Updated Computer',
+            'price' => 1500,
+        ]);
 
-    // Проверка, что администратор может удалить компьютер
+        $response->assertSessionHasErrors(['price']);
+    }
+
+    //Check for boundary value creation request 
+    public function testAdminCannotCreateComputerWithInvalidQuantity()
+    {
+        $response = $this->post(route('admin.computers.store'), [
+            'name' => 'Test Computer',
+            'price' => 500,
+            'quantity' => 0,
+        ]);
+
+        $response->assertSessionHasErrors(['quantity']);
+        
+        $response = $this->post(route('admin.computers.store'), [
+            'name' => 'Test Computer',
+            'price' => 500,
+            'quantity' => 256,
+        ]);
+
+        $response->assertSessionHasErrors(['quantity']);
+    }
+
+
+    // Verifying that an administrator can delete a computer
     public function testAdminCanDeleteComputer()
     {
         $response = $this->delete(route('admin.computers.destroy', ['id' => $this->computer->id]));

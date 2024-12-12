@@ -36,7 +36,28 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
+            'usertype' => 'user',
         ];
+    }
+
+    /**
+     * Состояние для администратора.
+     */
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'usertype' => 'admin',
+        ]);
+    }
+
+    /**
+     * Состояние для менеджера.
+     */
+    public function manager(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'usertype' => 'manager',
+        ]);
     }
 
     /**

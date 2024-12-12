@@ -243,10 +243,10 @@ class BookingController extends Controller
         $durationInHours = $roundedDurationInMinutes / 60;
         
         // Get the price per hour of the computer
-        $pricePerHour = $computer->price;  // Assuming the 'price' is stored in the 'computers' table
+        $pricePerHour = $computer->price;
         
         // Calculate the total amount to charge
-        $amount = $durationInHours * $pricePerHour * 100; // Convert to cents (Stripe requires cents)
+        $amount = $durationInHours * $pricePerHour * 100;
         $description = "Booking for Computer {$computer->name} from {$startTime->format('H:i')} to {$endTime->format('H:i')}";
         
         Stripe::setApiKey(env('STRIPE_SECRET'));

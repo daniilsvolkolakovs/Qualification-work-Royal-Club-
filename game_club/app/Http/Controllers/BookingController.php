@@ -157,7 +157,7 @@ class BookingController extends Controller
         // Update the booking details
         $booking->start_time = Carbon::parse($request->start_time);
         $booking->end_time = Carbon::parse($request->end_time);
-        $booking->save(); // Save the changes to the database
+        $booking->save();
 
         // Redirect with success message to the services page
         return redirect()->route('services')->with('success', __('messages.booking_updated_successfully'));
@@ -198,11 +198,11 @@ class BookingController extends Controller
 
         if ($dayOfWeek >= 1 && $dayOfWeek <= 5) {
             if ($startTime->hour < 9 || $startTime->hour >= 21 || $endTime->hour < 9 || $endTime->hour > 21) {
-                return back()->with('error', 'Bookings are only allowed between 09:00 and 21:00 on weekdays.');
+                return back()->withErrors(['start_time' => 'Bookings are only allowed between 09:00 and 21:00 on weekdays.']);
             }
         } elseif ($dayOfWeek == 0 || $dayOfWeek == 6) {
             if ($startTime->hour < 12 || $startTime->hour >= 18 || $endTime->hour < 12 || $endTime->hour > 18) {
-                return back()->with('error', 'Bookings are only allowed between 12:00 and 18:00 on weekends.');
+                return back()->withErrors(['start_time' => 'Bookings are only allowed between 12:00 and 18:00 on weekends.']);
             }
         }
         
@@ -211,21 +211,18 @@ class BookingController extends Controller
         // Check if the computer is already booked during the selected time
         $overlappingBooking = $computer->bookings()->where(function ($query) use ($startTime, $endTime) {
             $query->where(function ($q) use ($startTime, $endTime) {
-                // Cases where the new booking starts within an existing booking time range
                 $q->where('start_time', '<=', $startTime)
                   ->where('end_time', '>', $startTime);
             })
             ->orWhere(function ($q) use ($startTime, $endTime) {
-                // Cases where the new booking ends within an existing booking time range
                 $q->where('start_time', '<', $endTime)
                   ->where('end_time', '>=', $endTime);
             })
             ->orWhere(function ($q) use ($startTime, $endTime) {
-                // Cases where the new booking fully overlaps an existing booking
                 $q->where('start_time', '>=', $startTime)
                   ->where('end_time', '<=', $endTime);
             });
-        })->orderBy('end_time', 'asc')->first(); // Sort by the end time of the existing booking
+        })->orderBy('end_time', 'asc')->first();
         
         if ($overlappingBooking) {
             // If the computer is booked, display the time when it will be available
@@ -256,7 +253,7 @@ class BookingController extends Controller
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'price_data' => [
-                    'currency' => 'eur', // Change currency to EUR
+                    'currency' => 'eur',
                     'product_data' => [
                         'name' => $description,
                     ],

@@ -45,9 +45,9 @@ class AdminController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'name' => 'required|string|min:1', // Name must be at least 1 character
-            'email' => 'required|email|unique:users,email,' . $id, // Email must be unique except for the current user
-            'usertype' => 'required|string|in:admin,manager,user', // Usertype validation
+            'name' => 'required|string|min:1',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'usertype' => 'required|string|in:admin,manager,user',
         ]);
 
         // Find the user and update their information

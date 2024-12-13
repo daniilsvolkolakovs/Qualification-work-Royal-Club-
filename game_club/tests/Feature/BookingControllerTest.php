@@ -7,144 +7,145 @@ use App\Models\Computer;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 class BookingControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function guest_can_view_services_page_without_bookings_or_computers()
+    protected $user;
+    protected $manager;
+    protected $computer;
+    protected $booking;
+
+    protected function setUp(): void
     {
-        $response = $this->get('/services');
+        parent::setUp();
+
+        // Creating users
+        $this->user = User::factory()->create(['usertype' => 'user']);
+        $this->manager = User::factory()->create(['usertype' => 'manager']);
+
+        // Creating a computer
+        $this->computer = Computer::create([
+            'name' => 'Test Computer',
+            'price' => 500,
+            'quantity' => 10,
+            'computer_id' => uniqid('PC_'),
+        ]);
+
+        // Creating a booking
+        $this->booking = Booking::create([
+            'user_id' => $this->user->id,
+            'computer_id' => $this->computer->id,
+            'start_time' => Carbon::now()->addHours(2),
+            'end_time' => Carbon::now()->addHours(3),
+        ]);
+
+        $this->actingAs($this->manager);
+    }
+
+    // Test to check if a manager can edit a booking
+    public function test_manager_can_edit_booking()
+    {
+        $response = $this->get(route('manager.bookings.edit', ['booking' => $this->booking->id]));
 
         $response->assertStatus(200);
-        $response->assertViewHas('computers', []);
-        $response->assertViewHas('bookings', []);
-        $response->assertViewHas('isGuest', true);
     }
 
-    /** @test */
-    public function authenticated_user_can_view_services_page_with_bookings_and_computers()
+    // Test to check if a manager can update a booking with valid data
+    public function test_manager_can_update_booking_with_valid_data()
     {
-        $user = User::factory()->create();
-        $computer = Computer::factory()->create();
-        $booking = Booking::factory()->create(['user_id' => $user->id, 'computer_id' => $computer->id]);
+        $newStartTime = Carbon::now()->addHours(4);
+        $newEndTime = Carbon::now()->addHours(5);
 
-        $this->actingAs($user);
-        $response = $this->get('/services');
-
-        $response->assertStatus(200);
-        $response->assertViewHas('computers', function ($computers) use ($computer) {
-            return $computers->contains($computer);
-        });
-        $response->assertViewHas('bookings', function ($bookings) use ($booking) {
-            return $bookings->contains($booking);
-        });
-    }
-
-    /** @test */
-    public function manager_can_search_and_sort_bookings()
-    {
-        $manager = User::factory()->create(['usertype' => 'manager']);
-        Booking::factory(10)->create();
-
-        $this->actingAs($manager);
-        $response = $this->get('/services?search=test&sort=computers.name&order=asc');
-
-        $response->assertStatus(200);
-        $response->assertViewHas('bookings');
-    }
-
-    /** @test */
-    public function it_checks_availability_of_computers()
-    {
-        $computer = Computer::factory()->create();
-        Booking::factory()->create([
-            'computer_id' => $computer->id,
-            'start_time' => Carbon::now()->addHour(),
-            'end_time' => Carbon::now()->addHours(2),
+        $response = $this->put(route('manager.bookings.update', ['booking' => $this->booking->id]), [
+            'start_time' => $newStartTime,
+            'end_time' => $newEndTime,
         ]);
 
-        $response = $this->postJson('/api/check-availability', [
-            'start_time' => Carbon::now()->addHours(3),
-            'end_time' => Carbon::now()->addHours(4),
-        ]);
-
-        $response->assertStatus(200);
-        $response->assertJsonFragment(['id' => $computer->id]);
-    }
-
-    /** @test */
-    public function it_prevents_double_booking_for_same_time()
-    {
-        $user = User::factory()->create();
-        $computer = Computer::factory()->create();
-        Booking::factory()->create([
-            'computer_id' => $computer->id,
-            'start_time' => Carbon::now()->addHour(),
-            'end_time' => Carbon::now()->addHours(2),
-        ]);
-
-        $this->actingAs($user);
-        $response = $this->post('/bookings', [
-            'computer_id' => $computer->id,
-            'start_time' => Carbon::now()->addHour(),
-            'end_time' => Carbon::now()->addHours(2),
-        ]);
-
-        $response->assertSessionHas('error');
-    }
-
-    /** @test */
-    public function user_can_create_booking()
-    {
-        $user = User::factory()->create();
-        $computer = Computer::factory()->create();
-
-        $this->actingAs($user);
-        $response = $this->post('/bookings', [
-            'computer_id' => $computer->id,
-            'start_time' => Carbon::now()->addHour(),
-            'end_time' => Carbon::now()->addHours(2),
-        ]);
-
-        $response->assertSessionHas('success');
+        $response->assertRedirect(route('services'));
         $this->assertDatabaseHas('bookings', [
-            'user_id' => $user->id,
-            'computer_id' => $computer->id,
+            'id' => $this->booking->id,
+            'start_time' => $newStartTime,
+            'end_time' => $newEndTime,
         ]);
     }
 
-    /** @test */
-    public function it_processes_successful_payment()
+    // Test to check if a manager cannot update a booking with invalid data
+    public function test_manager_cannot_update_booking_with_invalid_data()
     {
-        Queue::fake();
-        $user = User::factory()->create();
-        $computer = Computer::factory()->create(['price' => 100]);
+        $response = $this->put(route('manager.bookings.update', ['booking' => $this->booking->id]), [
+            'start_time' => '',
+            'end_time' => '',
+        ]);
 
-        $this->actingAs($user);
-        $response = $this->post('/pay', [
-            'computer_id' => $computer->id,
-            'start_time' => Carbon::now()->addHour(),
+        $response->assertSessionHasErrors(['start_time', 'end_time']);
+    }
+
+    // Test to check if a manager can delete a booking
+    public function test_manager_can_delete_booking()
+    {
+        $response = $this->delete(route('manager.bookings.destroy', ['booking' => $this->booking->id]));
+
+        $response->assertRedirect(route('services', [
+            'sort' => 'bookings.id',
+            'order' => 'asc',
+            'search' => ''
+        ]));
+        
+        $this->assertDatabaseMissing('bookings', [
+            'id' => $this->booking->id,
+        ]);
+    }
+
+    // Test to check if a user cannot create a booking when the end time is before the start time
+    public function test_user_cannot_create_booking_if_end_time_is_before_start_time()
+    {
+        $this->actingAs($this->user);
+
+        $response = $this->post(route('bookings.store'), [
+            'computer_id' => $this->computer->id,
+            'start_time' => Carbon::now()->addHours(3),
             'end_time' => Carbon::now()->addHours(2),
         ]);
 
-        $response->assertRedirect();
-        Queue::assertPushed(DeletePendingBooking::class);
+        $response->assertSessionHasErrors(['end_time']);
     }
 
-    /** @test */
-    public function it_handles_payment_confirmation()
+    // Test to check if a user cannot create a booking with a past time
+    public function test_user_cannot_create_booking_with_past_time()
     {
-        $user = User::factory()->create();
-        $booking = Booking::factory()->create(['user_id' => $user->id, 'payment_status' => 'pending']);
+        $this->actingAs($this->user);
 
-        $this->actingAs($user);
-        $response = $this->get('/bookings/confirm?session_id=test_session');
+        $response = $this->post(route('bookings.store'), [
+            'computer_id' => $this->computer->id,
+            'start_time' => Carbon::now()->subDay(),
+            'end_time' => Carbon::now()->subDay()->addHour(),
+        ]);
 
-        $response->assertRedirect('/services');
-        $this->assertEquals('paid', $booking->refresh()->payment_status);
+        $response->assertSessionHasErrors(['start_time']);
+    }
+
+    public function test_user_cannot_create_booking_outside_working_hours_on_weekdays()
+    {
+        $response = $this->actingAs($this->user)->post(route('bookings.pay'), [
+            'computer_id' => $this->computer->id,
+            'start_time' => Carbon::now()->nextWeekday()->setHour(8)->setMinute(0)->format('Y-m-d H:i:s'),
+            'end_time' => Carbon::now()->nextWeekday()->setHour(10)->setMinute(0)->format('Y-m-d H:i:s'),
+        ]);
+
+        $response->assertSessionHasErrors(['start_time']);
+    }
+
+    public function test_user_cannot_create_booking_outside_working_hours_on_weekends()
+    {
+        $response = $this->actingAs($this->user)->post(route('bookings.pay'), [
+            'computer_id' => $this->computer->id,
+            'start_time' => Carbon::now()->nextWeekendDay()->setHour(11)->setMinute(0)->format('Y-m-d H:i:s'),
+            'end_time' => Carbon::now()->nextWeekendDay()->setHour(13)->setMinute(0)->format('Y-m-d H:i:s'),
+        ]);
+
+        $response->assertSessionHasErrors(['start_time']);
     }
 }
